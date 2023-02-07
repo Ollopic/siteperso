@@ -1,0 +1,5 @@
+antoine.famillemarechal.net {
+proxy / localhost:8000
+}
+
+:8002
