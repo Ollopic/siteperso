@@ -1,5 +1,5 @@
 antoine.famillemarechal.net {
-proxy / localhost:8000
+    proxy / localhost:8000 {
+        transparent
+    }
 }
-
-:8002
