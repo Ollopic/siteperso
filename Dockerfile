@@ -1,7 +1,7 @@
-FROM nginx:alpine
+FROM caddy:2-alpine
 
 WORKDIR /app
 
 COPY ./website .
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./Caddyfile /etc/caddy/Caddyfile
