@@ -1,7 +1,9 @@
 FROM caddy:2-alpine
 
-WORKDIR /app
+WORKDIR /var/www/html
 
-COPY ./website .
+COPY ./website /var/www/html
+RUN chmod a+r /var/www/html
 
-COPY ./Caddyfile /etc/caddy/Caddyfile
+COPY Caddyfile /etc/caddy/Caddyfile
+RUN chmod a+r /var/www/html/*
