@@ -6,7 +6,7 @@ services:
     networks:
       caddy:
     labels:
-      caddy: antoine.famillemarechal.net
+      caddy: marechalantoine.fr
       caddy.reverse_proxy: "{{upstreams 80}}"
 
 networks:
