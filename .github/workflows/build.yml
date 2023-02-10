@@ -35,31 +35,3 @@ jobs:
           tags: ghcr.io/ollopic/siteperso:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      # Deployement
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/staging.key
-          chmod 600 ~/.ssh/staging.key
-          cat >>~/.ssh/config <<END
-          Host staging
-            HostName $SSH_HOST
-            Port $SSH_PORT
-            User $SSH_USER
-            IdentityFile ~/.ssh/staging.key
-            StrictHostKeyChecking no
-          END
-        env:
-          SSH_USER: ${{ secrets.STAGING_SSH_USER }}
-          SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
-          SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
-          SSH_PORT: ${{ secrets.STAGING_SSH_PORT }}
-
-      - name: Update and restart the container
-        run: ssh staging <<EOF
-        cd docker/siteperso
-        docker compose pull
-        docker compose stop
-        docker compose rm
-        docker compose up -d
-        EOF
